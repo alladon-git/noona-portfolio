@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="ko" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio — Creative Developer</title>
+  <meta name="description" content="Creative developer portfolio showcasing projects, skills, and experience." />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy: { DEFAULT: '#1a1b2e', light: '#2a2c49', dark: '#0f1021' },
+            cyan:  { DEFAULT: '#00d1ff', dark: '#00a8cc' },
+            purple:{ DEFAULT: '#7c3aed', light: '#a78bfa' },
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            display: ['Poppins', 'sans-serif'],
+          },
+          animation: {
+            'fade-in': 'fadeIn .6s ease forwards',
+            'slide-up': 'slideUp .6s ease forwards',
+            'pulse-slow': 'pulse 3s ease-in-out infinite',
+          },
+          keyframes: {
+            fadeIn:  { from: { opacity: 0 }, to: { opacity: 1 } },
+            slideUp: { from: { opacity: 0, transform: 'translateY(30px)' }, to: { opacity: 1, transform: 'translateY(0)' } },
+          },
+        },
+      },
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="bg-navy text-white font-sans antialiased">
+
+  <!-- ─── MOBILE MENU OVERLAY ─── -->
+  <div id="mobile-menu" class="fixed inset-0 bg-navy-dark/95 backdrop-blur-lg z-50 flex flex-col items-center justify-center gap-8 hidden">
+    <button id="close-menu" aria-label="Close menu" class="absolute top-6 right-6 text-white text-3xl"><i class="fa fa-times"></i></button>
+    <nav class="flex flex-col items-center gap-6 text-2xl font-display">
+      <a href="#home"     class="mobile-link" onclick="closeMenu()">Home</a>
+      <a href="#about"    class="mobile-link" onclick="closeMenu()">About</a>
+      <a href="#services" class="mobile-link" onclick="closeMenu()">Services</a>
+      <a href="#skills"   class="mobile-link" onclick="closeMenu()">Skills</a>
+      <a href="#portfolio"class="mobile-link" onclick="closeMenu()">Portfolio</a>
+      <a href="#contact"  class="mobile-link" onclick="closeMenu()">Contact</a>
+    </nav>
+    <a href="#contact" onclick="closeMenu()" class="mt-4 px-10 py-4 bg-cyan text-navy font-bold rounded-full text-lg hover:bg-cyan-dark transition-all">Hire Me</a>
+  </div>
+
+  <!-- ─── NAVBAR ─── -->
+  <header id="navbar" class="fixed top-0 left-0 right-0 z-40 transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href="#home" class="text-2xl font-display font-bold text-white">
+        Port<span class="text-cyan">folio</span>
+      </a>
+      <!-- Desktop nav -->
+      <nav class="hidden md:flex items-center gap-8 text-sm font-medium">
+        <a href="#home"      class="nav-link">Home</a>
+        <a href="#about"     class="nav-link">About</a>
+        <a href="#services"  class="nav-link">Services</a>
+        <a href="#skills"    class="nav-link">Skills</a>
+        <a href="#portfolio" class="nav-link">Portfolio</a>
+        <a href="#contact"   class="nav-link">Contact</a>
+      </nav>
+      <div class="hidden md:flex items-center gap-4">
+        <a href="#contact" class="px-6 py-2 bg-cyan text-navy font-bold rounded-full hover:bg-cyan-dark transition-all hover:shadow-[0_0_20px_rgba(0,209,255,.4)]">Hire Me</a>
+      </div>
+      <!-- Hamburger -->
+      <button id="hamburger" aria-label="Open menu" class="md:hidden text-white text-2xl p-2">
+        <i class="fa fa-bars"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- ─── HERO ─── -->
+  <section id="home" class="min-h-screen flex items-center pt-20 relative overflow-hidden">
+    <!-- Blobs -->
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+
+    <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center w-full">
+      <!-- Text -->
+      <div class="animate-fade-in">
+        <p class="text-cyan font-medium tracking-widest uppercase text-sm mb-3">Welcome to my world</p>
+        <h1 class="font-display text-5xl md:text-7xl font-bold leading-tight mb-4">
+          Hi, I'm <span class="text-gradient">WooJin</span>
+        </h1>
+        <h2 class="text-2xl md:text-3xl font-display font-semibold text-white/80 mb-6">
+          <span id="typed-text"></span><span class="typed-cursor">|</span>
+        </h2>
+        <p class="text-white/60 text-lg leading-relaxed mb-10 max-w-lg">
+          I craft beautiful, high-performance digital experiences — from pixel-perfect UI designs to scalable backend systems.
+        </p>
+        <div class="flex flex-wrap gap-4">
+          <a href="#portfolio" class="btn-primary min-w-[160px] min-h-[52px] flex items-center justify-center">View My Work</a>
+          <a href="#contact"   class="btn-outline  min-w-[160px] min-h-[52px] flex items-center justify-center">Get In Touch</a>
+        </div>
+        <!-- Social links -->
+        <div class="flex items-center gap-5 mt-10">
+          <span class="text-white/40 text-sm">Follow me</span>
+          <div class="h-px w-8 bg-white/20"></div>
+          <a href="#" aria-label="GitHub"   class="social-icon"><i class="fab fa-github"></i></a>
+          <a href="#" aria-label="LinkedIn" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#" aria-label="Twitter"  class="social-icon"><i class="fab fa-twitter"></i></a>
+          <a href="#" aria-label="Dribbble" class="social-icon"><i class="fab fa-dribbble"></i></a>
+        </div>
+      </div>
+      <!-- Avatar -->
+      <div class="flex justify-center animate-slide-up">
+        <div class="hero-avatar-wrapper">
+          <div class="hero-avatar-ring"></div>
+          <img src="profile.jpg" alt="WooJin avatar" class="hero-avatar" style="object-fit:cover;" />
+          <!-- Floating badges -->
+          <div class="float-badge float-badge--tl"><i class="fab fa-react text-cyan mr-2"></i>React</div>
+          <div class="float-badge float-badge--br"><i class="fas fa-code text-purple-light mr-2"></i>Full Stack</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scroll hint -->
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/30 text-xs animate-bounce">
+      <span>Scroll down</span>
+      <i class="fa fa-chevron-down"></i>
+    </div>
+  </section>
+
+  <!-- ─── STATS ─── -->
+  <section class="py-16 bg-navy-light/50">
+    <div class="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+      <div class="stat-card"><span class="stat-num" data-target="50">0</span><span class="text-cyan text-3xl font-bold">+</span><p class="stat-label">Projects Done</p></div>
+      <div class="stat-card"><span class="stat-num" data-target="5">0</span><span class="text-cyan text-3xl font-bold">+</span><p class="stat-label">Years Experience</p></div>
+      <div class="stat-card"><span class="stat-num" data-target="30">0</span><span class="text-cyan text-3xl font-bold">+</span><p class="stat-label">Happy Clients</p></div>
+      <div class="stat-card"><span class="stat-num" data-target="10">0</span><span class="text-cyan text-3xl font-bold">+</span><p class="stat-label">Awards Won</p></div>
+    </div>
+  </section>
+
+  <!-- ─── ABOUT ─── -->
+  <section id="about" class="py-24 relative">
+    <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
+      <!-- Image side -->
+      <div class="relative flex justify-center">
+        <div class="about-img-wrapper">
+          <img src="profile.jpg" alt="About WooJin" class="w-72 md:w-96 rounded-3xl relative z-10" style="object-fit:cover;" />
+          <div class="about-glow"></div>
+        </div>
+        <!-- Experience pill -->
+        <div class="absolute bottom-4 right-4 md:bottom-8 md:right-0 bg-navy-light border border-cyan/20 rounded-2xl p-5 shadow-xl z-20">
+          <div class="text-4xl font-display font-bold text-cyan">5+</div>
+          <div class="text-white/70 text-sm">Years of Experience</div>
+        </div>
+      </div>
+      <!-- Content -->
+      <div>
+        <p class="section-eyebrow">About Me</p>
+        <h2 class="section-title">Passionate About <span class="text-gradient">Creative Solutions</span></h2>
+        <p class="text-white/60 leading-relaxed mb-6">
+          저는 서울을 기반으로 활동하는 풀스택 개발자이자 UI/UX 디자이너입니다. 실제 문제를 해결하는 아름답고 고성능의 웹 및 모바일 애플리케이션을 만드는 데 특화되어 있습니다.
+        </p>
+        <p class="text-white/60 leading-relaxed mb-8">
+          디자인과 엔지니어링 두 분야의 배경을 바탕으로, 멋진 비주얼과 견고하고 유지보수 가능한 코드 사이의 간극을 메우고 있습니다.
+        </p>
+        <div class="grid grid-cols-2 gap-4 mb-8">
+          <div class="info-row"><i class="fa fa-user text-cyan mr-2"></i><span>WooJin</span></div>
+          <div class="info-row"><i class="fa fa-map-marker-alt text-cyan mr-2"></i><span>Seoul, Korea</span></div>
+          <div class="info-row"><i class="fa fa-envelope text-cyan mr-2"></i><span>hellow@gmail.dev</span></div>
+          <div class="info-row"><i class="fa fa-phone text-cyan mr-2"></i><span>+82 10-0000-0000</span></div>
+        </div>
+        <a href="#" class="btn-primary inline-flex items-center gap-2 min-h-[52px] px-8">
+          <i class="fa fa-download"></i> Download CV
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── SERVICES ─── -->
+  <section id="services" class="py-24 bg-navy-light/30">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <p class="section-eyebrow">What I Do</p>
+        <h2 class="section-title">My <span class="text-gradient">Services</span></h2>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="service-card"><div class="service-icon"><i class="fa fa-paint-brush"></i></div><h3 class="text-xl font-display font-bold mb-3">UI/UX Design</h3><p class="text-white/60 text-sm leading-relaxed">Crafting intuitive, visually stunning interfaces that delight users and drive engagement.</p></div>
+        <div class="service-card"><div class="service-icon"><i class="fa fa-code"></i></div><h3 class="text-xl font-display font-bold mb-3">Web Development</h3><p class="text-white/60 text-sm leading-relaxed">Building fast, accessible, and scalable web applications with modern frameworks.</p></div>
+        <div class="service-card"><div class="service-icon"><i class="fa fa-mobile-alt"></i></div><h3 class="text-xl font-display font-bold mb-3">Mobile Apps</h3><p class="text-white/60 text-sm leading-relaxed">Creating cross-platform mobile experiences with React Native and Flutter.</p></div>
+        <div class="service-card"><div class="service-icon"><i class="fa fa-server"></i></div><h3 class="text-xl font-display font-bold mb-3">Backend & APIs</h3><p class="text-white/60 text-sm leading-relaxed">Designing robust RESTful APIs and microservices with Node.js and Go.</p></div>
+        <div class="service-card"><div class="service-icon"><i class="fa fa-chart-line"></i></div><h3 class="text-xl font-display font-bold mb-3">SEO & Performance</h3><p class="text-white/60 text-sm leading-relaxed">Optimising web vitals, search rankings, and conversion rates through data-driven approaches.</p></div>
+        <div class="service-card"><div class="service-icon"><i class="fa fa-shield-alt"></i></div><h3 class="text-xl font-display font-bold mb-3">Security Review</h3><p class="text-white/60 text-sm leading-relaxed">Auditing codebases for vulnerabilities and implementing security best practices.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── SKILLS ─── -->
+  <section id="skills" class="py-24">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <p class="section-eyebrow">My Expertise</p>
+        <h2 class="section-title">Tech <span class="text-gradient">Skills</span></h2>
+      </div>
+      <div class="grid md:grid-cols-2 gap-10">
+        <div>
+          <h3 class="text-lg font-display font-bold mb-6 text-white/80">Frontend</h3>
+          <div class="space-y-5">
+            <div class="skill-bar" data-skill="React / Next.js" data-pct="92"></div>
+            <div class="skill-bar" data-skill="TypeScript"      data-pct="88"></div>
+            <div class="skill-bar" data-skill="Tailwind CSS"    data-pct="95"></div>
+            <div class="skill-bar" data-skill="Figma / Design"  data-pct="80"></div>
+          </div>
+        </div>
+        <div>
+          <h3 class="text-lg font-display font-bold mb-6 text-white/80">Backend & Tools</h3>
+          <div class="space-y-5">
+            <div class="skill-bar" data-skill="Node.js / Express" data-pct="85"></div>
+            <div class="skill-bar" data-skill="PostgreSQL / MongoDB" data-pct="78"></div>
+            <div class="skill-bar" data-skill="Docker / CI/CD"   data-pct="72"></div>
+            <div class="skill-bar" data-skill="Python / FastAPI"  data-pct="70"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── PORTFOLIO ─── -->
+  <section id="portfolio" class="py-24 bg-navy-light/30">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <p class="section-eyebrow">My Work</p>
+        <h2 class="section-title">Recent <span class="text-gradient">Projects</span></h2>
+      </div>
+      <!-- Filter tabs -->
+      <div class="flex flex-wrap justify-center gap-3 mb-12">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="web">Web</button>
+        <button class="filter-btn" data-filter="mobile">Mobile</button>
+        <button class="filter-btn" data-filter="design">Design</button>
+      </div>
+      <!-- Cards -->
+      <div id="portfolio-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="portfolio-card" data-cat="web">
+          <img src="https://picsum.photos/seed/proj1/600/400" alt="E-Commerce Platform" class="w-full h-48 object-cover" />
+          <div class="portfolio-overlay"><h3 class="text-lg font-bold">E-Commerce Platform</h3><p class="text-cyan text-sm">React · Node.js</p><a href="#" class="mt-3 btn-primary-sm">View Project <i class="fa fa-arrow-right ml-1"></i></a></div>
+        </div>
+        <div class="portfolio-card" data-cat="mobile">
+          <img src="https://picsum.photos/seed/proj2/600/400" alt="Fitness Tracker App" class="w-full h-48 object-cover" />
+          <div class="portfolio-overlay"><h3 class="text-lg font-bold">Fitness Tracker App</h3><p class="text-cyan text-sm">React Native</p><a href="#" class="mt-3 btn-primary-sm">View Project <i class="fa fa-arrow-right ml-1"></i></a></div>
+        </div>
+        <div class="portfolio-card" data-cat="design">
+          <img src="https://picsum.photos/seed/proj3/600/400" alt="Brand Identity System" class="w-full h-48 object-cover" />
+          <div class="portfolio-overlay"><h3 class="text-lg font-bold">Brand Identity System</h3><p class="text-cyan text-sm">Figma · Illustrator</p><a href="#" class="mt-3 btn-primary-sm">View Project <i class="fa fa-arrow-right ml-1"></i></a></div>
+        </div>
+        <div class="portfolio-card" data-cat="web">
+          <img src="https://picsum.photos/seed/proj4/600/400" alt="SaaS Dashboard" class="w-full h-48 object-cover" />
+          <div class="portfolio-overlay"><h3 class="text-lg font-bold">SaaS Dashboard</h3><p class="text-cyan text-sm">Next.js · TypeScript</p><a href="#" class="mt-3 btn-primary-sm">View Project <i class="fa fa-arrow-right ml-1"></i></a></div>
+        </div>
+        <div class="portfolio-card" data-cat="web">
+          <img src="https://picsum.photos/seed/proj5/600/400" alt="Real-Time Chat App" class="w-full h-48 object-cover" />
+          <div class="portfolio-overlay"><h3 class="text-lg font-bold">Real-Time Chat App</h3><p class="text-cyan text-sm">Socket.io · Express</p><a href="#" class="mt-3 btn-primary-sm">View Project <i class="fa fa-arrow-right ml-1"></i></a></div>
+        </div>
+        <div class="portfolio-card" data-cat="design">
+          <img src="https://picsum.photos/seed/proj6/600/400" alt="Mobile App UI Kit" class="w-full h-48 object-cover" />
+          <div class="portfolio-overlay"><h3 class="text-lg font-bold">Mobile App UI Kit</h3><p class="text-cyan text-sm">Figma · Design System</p><a href="#" class="mt-3 btn-primary-sm">View Project <i class="fa fa-arrow-right ml-1"></i></a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── TESTIMONIALS ─── -->
+  <section class="py-24">
+    <div class="max-w-4xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <p class="section-eyebrow">Reviews</p>
+        <h2 class="section-title">Client <span class="text-gradient">Testimonials</span></h2>
+      </div>
+      <div class="relative">
+        <div id="testimonial-slider" class="overflow-hidden">
+          <div id="testimonial-track" class="flex transition-transform duration-500">
+            <div class="testimonial-slide min-w-full px-4">
+              <div class="testimonial-card">
+                <div class="flex items-center gap-1 text-amber-400 mb-4"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div>
+                <p class="text-white/70 leading-relaxed italic mb-6">"WooJin은 저희의 모든 기대를 뛰어넘는 훌륭한 이커머스 플랫폼을 구축해 주었습니다. 디자인과 코드 품질 모두에서 세부 사항 하나하나까지 세심하게 신경 써준 점이 정말 인상적이었습니다."</p>
+                <div class="flex items-center gap-4"><img src="https://api.dicebear.com/8.x/avataaars/svg?seed=client1&size=48" class="w-12 h-12 rounded-full" alt="Client 1" /><div><div class="font-bold">Sarah Johnson</div><div class="text-white/50 text-sm">CEO, TechStart</div></div></div>
+              </div>
+            </div>
+            <div class="testimonial-slide min-w-full px-4">
+              <div class="testimonial-card">
+                <div class="flex items-center gap-1 text-amber-400 mb-4"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div>
+                <p class="text-white/70 leading-relaxed italic mb-6">"WooJin과 함께 작업하는 것은 정말 즐거운 경험이었습니다. 그가 개발해 준 모바일 앱은 사용자들로부터 놀라운 호평을 받고 있습니다. 강력히 추천합니다!"</p>
+                <div class="flex items-center gap-4"><img src="https://api.dicebear.com/8.x/avataaars/svg?seed=client2&size=48" class="w-12 h-12 rounded-full" alt="Client 2" /><div><div class="font-bold">Michael Park</div><div class="text-white/50 text-sm">Product Manager, AppLabs</div></div></div>
+              </div>
+            </div>
+            <div class="testimonial-slide min-w-full px-4">
+              <div class="testimonial-card">
+                <div class="flex items-center gap-1 text-amber-400 mb-4"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half-alt"></i></div>
+                <p class="text-white/70 leading-relaxed italic mb-6">"WooJin이 만들어 준 브랜드 아이덴티티는 저희 회사의 비전을 완벽하게 담아냈습니다. 전문적이고 창의적이며, 항상 기한을 지켜주는 믿음직한 파트너입니다."</p>
+                <div class="flex items-center gap-4"><img src="https://api.dicebear.com/8.x/avataaars/svg?seed=client3&size=48" class="w-12 h-12 rounded-full" alt="Client 3" /><div><div class="font-bold">Emma Choi</div><div class="text-white/50 text-sm">Founder, DesignCo</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="flex justify-center gap-3 mt-8">
+          <button id="prev-testimonial" class="slider-btn"><i class="fa fa-chevron-left"></i></button>
+          <button id="next-testimonial" class="slider-btn"><i class="fa fa-chevron-right"></i></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── CONTACT ─── -->
+  <section id="contact" class="py-24 bg-navy-light/30">
+    <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-start">
+      <!-- Info -->
+      <div>
+        <p class="section-eyebrow">Get In Touch</p>
+        <h2 class="section-title">Let's Work <span class="text-gradient">Together</span></h2>
+        <p class="text-white/60 leading-relaxed mb-10">Have a project in mind? Let's create something amazing together. I'm always open to discussing new opportunities and ideas.</p>
+        <div class="space-y-6">
+          <div class="contact-info-row"><div class="contact-icon"><i class="fa fa-envelope"></i></div><div><div class="font-semibold">Email</div><div class="text-white/60 text-sm">hellow@gmail.dev</div></div></div>
+          <div class="contact-info-row"><div class="contact-icon"><i class="fa fa-phone"></i></div><div><div class="font-semibold">Phone</div><div class="text-white/60 text-sm">+82 10-0000-0000</div></div></div>
+          <div class="contact-info-row"><div class="contact-icon"><i class="fa fa-map-marker-alt"></i></div><div><div class="font-semibold">Location</div><div class="text-white/60 text-sm">Seoul, South Korea</div></div></div>
+        </div>
+      </div>
+      <!-- Form -->
+      <form id="contact-form" class="space-y-5" novalidate>
+        <div class="grid sm:grid-cols-2 gap-5">
+          <div>
+            <label for="name" class="form-label">Full Name</label>
+            <input id="name" type="text" placeholder="WooJin" class="form-input" required />
+          </div>
+          <div>
+            <label for="email" class="form-label">Email Address</label>
+            <input id="email" type="email" placeholder="hello@email.com" class="form-input" required />
+          </div>
+        </div>
+        <div>
+          <label for="subject" class="form-label">Subject</label>
+          <input id="subject" type="text" placeholder="Project Inquiry" class="form-input" />
+        </div>
+        <div>
+          <label for="message" class="form-label">Message</label>
+          <textarea id="message" rows="5" placeholder="Tell me about your project..." class="form-input resize-none" required></textarea>
+        </div>
+        <button type="submit" id="submit-btn" class="btn-primary w-full min-h-[56px] text-lg flex items-center justify-center gap-2">
+          <i class="fa fa-paper-plane"></i> Send Message
+        </button>
+        <div id="form-msg" class="hidden text-center py-3 rounded-xl text-sm font-medium"></div>
+      </form>
+    </div>
+  </section>
+
+  <!-- ─── FOOTER ─── -->
+  <footer class="py-10 border-t border-white/10">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
+      <p class="text-white/40 text-sm">© 2025 WooJin. All rights reserved.</p>
+      <div class="flex items-center gap-4">
+        <a href="#" aria-label="GitHub"   class="social-icon text-sm"><i class="fab fa-github"></i></a>
+        <a href="#" aria-label="LinkedIn" class="social-icon text-sm"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#" aria-label="Twitter"  class="social-icon text-sm"><i class="fab fa-twitter"></i></a>
+      </div>
+      <a href="#home" class="text-white/40 hover:text-cyan text-sm transition-colors">Back to top ↑</a>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
